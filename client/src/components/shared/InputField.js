@@ -13,13 +13,14 @@ export default function InputField({ label, ...props }) {
   return (
     <FormControl mt={4} isInvalid={error != null && touched}>
       <FormLabel htmlFor={field.name}>
-        <Text fontSize="12px" textTransform="uppercase">
+        <Text fontSize="12px" textTransform="uppercase" color="blueBack">
           {label}
         </Text>
       </FormLabel>
       {/* @ts-ignore */}
       <Input
-        bg="brandGray.dark"
+        bg="white"
+        color="blueBack"
         borderColor="black"
         borderRadius="3px"
         focusBorderColor="highlight.standard"

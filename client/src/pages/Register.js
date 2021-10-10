@@ -33,14 +33,24 @@ export default function Register() {
   }
 
   return (
-    <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
+    <Flex
+      minHeight="100vh"
+      width="full"
+      align="center"
+      justifyContent="center"
+      background="cobaltBlue"
+    >
       <Box px={4} width="full" maxWidth="500px" textAlign="center">
         <Flex mb="4" justify="center">
-          <Image src="/logo.png" w="80px" />
+          <Heading as="h1" size="lg">
+            Sign up for an account
+          </Heading>
         </Flex>
-        <Box p={4} borderRadius={4} background="brandGray.light">
+        <Box p={4} borderRadius={4} background="white">
           <Box textAlign="center">
-            <Heading fontSize="24px">Welcome to GuildChat</Heading>
+            <Heading fontSize="24px" color="blueBack">
+              Welcome to GuildChat
+            </Heading>
           </Box>
           <Box my={4} textAlign="left">
             <Formik
@@ -59,19 +69,25 @@ export default function Register() {
                     name="email"
                     autoComplete="email"
                     type="email"
+                    _hover={{ borderColor: "blueBack" }}
                   />
 
-                  <InputField label="username" name="username" />
+                  <InputField
+                    label="username"
+                    name="username"
+                    _hover={{ borderColor: "blueBack" }}
+                  />
 
                   <InputField
                     label="password"
                     name="password"
                     autoComplete="password"
                     type="password"
+                    _hover={{ borderColor: "blueBack" }}
                   />
 
                   <Button
-                    background="highlight.standard"
+                    background="cobaltBlue"
                     color="white"
                     width="full"
                     mt={4}

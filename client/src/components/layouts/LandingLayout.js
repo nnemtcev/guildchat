@@ -5,7 +5,13 @@ import React from "react";
 
 export default function LandingLayout({ children }) {
   return (
-    <Flex direction="column" align="center" maxW={{ xl: "1200px" }} m="0 auto">
+    <Flex
+      direction="column"
+      align="center"
+      maxW={{ xl: "1200px" }}
+      m="0 auto"
+      background="white"
+    >
       <Navbar />
       {children}
       <Footer />

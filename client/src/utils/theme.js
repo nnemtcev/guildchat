@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 
 const config = {
-  initialColorMode: "dark",
+  initialColorMode: "light",
 };
 
 const styles = {
@@ -36,6 +36,10 @@ const colors = {
   memberList: "#2f3136",
   iconColor: "#b9bbbe",
   messageInput: "#40444b",
+  cobaltBlue: "#3A5199",
+  white: "#FFF",
+  coolGray: "#D5D6D2",
+  blueBack: "#2F2E33",
 };
 
 const fonts = {

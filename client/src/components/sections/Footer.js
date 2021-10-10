@@ -23,7 +23,7 @@ export default function Footer() {
     <Flex bottom={0} as="footer" align="center" justify="center" w="100%" p={8}>
       <Box textAlign="center">
         <Text fontSize="xl">
-          <span>Discord | 2021</span>
+          <span>GuildChat &copy; Copyright 2021</span>
         </Text>
       </Box>
     </Flex>

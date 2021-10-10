@@ -21,7 +21,7 @@ export default function Login() {
     <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
       <Box px={4} width="full" maxWidth="500px" textAlign="center">
         <Flex mb="4" justify="center">
-          <Image src="/discord-logo.png" w="80px" />
+          <Image src="/guildchat-logo.png" w="80px" />
         </Flex>
         <Box p={4} borderRadius={4} background="brandGray.light">
           <Box textAlign="center">

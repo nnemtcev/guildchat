@@ -6,8 +6,8 @@ export default function Landing() {
   return (
     <LandingLayout>
       <Hero
-        title="An invite-only place with plenty of room to talk"
-        subtitle="Discord servers are organized into topic-based channels where you can collaborate, share, and just talk about your day without clogging up a group chat."
+        title="An invite-only messaging app where you can chat"
+        subtitle="GuildChat is for talking about various topics that you're passionate about with friends."
         image="/landing.svg"
         ctaText="Get Started"
         ctaLink="/register"
