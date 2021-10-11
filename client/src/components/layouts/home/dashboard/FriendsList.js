@@ -8,9 +8,13 @@ import { useQuery } from "react-query";
 import { fKey } from "utils/querykeys";
 
 export default function FriendsList() {
+  const { data: friends } = useQuery(fKey, () => {
+    return getFriends().then((res) => res.data);
+  });
+
   useFriendSocket();
 
-  if ("no friends") {
+  if (friends?.length === 0) {
     return (
       <Flex justify={"center"} align={"center"} w={"full"}>
         <Text textColor={"brandGray.accent"}>No one here yet</Text>
@@ -21,8 +25,10 @@ export default function FriendsList() {
   return (
     <>
       <UnorderedList listStyleType="none" ml="0" w="full" mt="2">
-        <OnlineLabel label={`friends — ${0}`} />
-        confirmed friends
+        <OnlineLabel label={`friends — ${friends?.length || 0}`} />
+        {friends?.map((friend) => (
+          <FriendsListItem id={friend.id} friend={friend} />
+        ))}
       </UnorderedList>
     </>
   );

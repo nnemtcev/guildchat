@@ -25,9 +25,24 @@ import InputField from "components/shared/InputField";
 
 export default function AddFriendModal({ isOpen, onClose }) {
   const current = userStore((state) => state.current);
+  const cache = useQueryClient();
   const { hasCopied, onCopy } = useClipboard(current?.id || "");
 
-  async function handleAddFriend() {}
+  async function handleAddFriend(formValues, { setErrors }) {
+    if (formValues.id === "" || formValues.id.length !== 20) {
+      setErrors({ id: "Please enter a valid ID" });
+    } else {
+      try {
+        const { data } = await sendFriendRequest(formValues.id);
+        if (data) {
+          onClose();
+          cache.invalidateQueries(rKey);
+        }
+      } catch (err) {
+        setErrors(toErrorMap(err));
+      }
+    }
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
