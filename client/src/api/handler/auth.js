@@ -5,7 +5,7 @@ export const register = (formValues) =>
 
 export const login = (formValues) => api.post("/account/login", formValues);
 
-export const logout = () => null;
+export const logout = () => api.post("/account/logout");
 
 export const forgotPassword = (email) =>
   api.post("/account/forgot-password", { email });

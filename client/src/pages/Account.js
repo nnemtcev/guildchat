@@ -30,6 +30,10 @@ export default function Account() {
     getAccount().then((res) => res.data)
   );
 
+  const cache = useQueryClient();
+
+  const logoutUser = userStore((state) => state.logout);
+
   const history = useHistory();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -44,7 +48,17 @@ export default function Account() {
   const [cropImage, setCropImage] = useState("");
   const [croppedImage, setCroppedImage] = useState(null);
 
-  async function handleLogout() {}
+  async function handleLogout() {
+    logout()
+      .then((res) => {
+        if (res.data) {
+          cache.clear();
+          logoutUser();
+          history.push("/");
+        }
+      })
+      .catch((err) => console.log(err));
+  }
 
   async function handleSubmit() {}
 
