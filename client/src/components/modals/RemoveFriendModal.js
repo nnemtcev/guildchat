@@ -16,7 +16,19 @@ import useGetFriend from "hooks/useGetFriend";
 import { fKey } from "utils/querykeys";
 
 export default function RemoveFriendModal({ id, isOpen, onClose }) {
-  async function handleRemoveFriend() {}
+  const friendData = useGetFriend(id);
+  const cache = useQueryClient();
+
+  async function handleRemoveFriend() {
+    onClose();
+
+    try {
+      const { data } = await removeFriend(id);
+      if (data) {
+        cache.invalidateQueries(fKey);
+      }
+    } catch (err) {}
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -29,12 +41,12 @@ export default function RemoveFriendModal({ id, isOpen, onClose }) {
           mb={0}
           pb={0}
         >
-          Remove 'user.username'
+          Remove '{friendData?.username}'
         </ModalHeader>
         <ModalBody>
           <Text mb={"4"}>
-            Are you sure you want to permanently remove <b>user.username</b>{" "}
-            from your friends?
+            Are you sure you want to permanently remove{" "}
+            <b>{friendData?.username}</b> from your friends?
           </Text>
         </ModalBody>
 
