@@ -39,7 +39,6 @@ export default function Navbar() {
           <>
             <Link to="/login">
               <Button
-                color="white"
                 _hover={{ bg: "highlight.hover" }}
                 _active={{ bg: "highlight.active" }}
                 _focus={{ boxShadow: "none" }}
