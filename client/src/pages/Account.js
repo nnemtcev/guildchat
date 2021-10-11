@@ -33,6 +33,7 @@ export default function Account() {
   const cache = useQueryClient();
 
   const logoutUser = userStore((state) => state.logout);
+  const setUser = userStore((state) => state.setUser);
 
   const history = useHistory();
   const toast = useToast();
@@ -57,14 +58,40 @@ export default function Account() {
           history.push("/");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
-  async function handleSubmit() {}
+  async function handleUpdateAccount(values, { setErrors }) {
+    const formData = new FormData();
+    formData.append("email", values.email);
+    formData.append("username", values.username);
+    formData.append("image", croppedImage ?? imageUrl);
+    const { data } = await updateAccount(formData);
 
-  function handleSelectImage(event) {}
+    if (data) {
+      setUser(data);
+      toast({
+        title: "Account Updated",
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }
 
-  function applyCrop(file) {}
+  function handleSelectImage(event) {
+    if (!event.target.files) return;
+    setCropImage(URL.createObjectURL(event.target.files[0]));
+    cropperOnOpen();
+  }
+
+  function applyCrop(file) {
+    setImageUrl(URL.createObjectURL(file));
+    setCroppedImage(new File([file], "avatar"));
+    cropperOnClose();
+  }
 
   if (!user) {
     return null;
@@ -87,7 +114,7 @@ export default function Account() {
                 image,
               }}
               validationSchema={UserSchema}
-              onSubmit={handleSubmit}
+              onSubmit={handleUpdateAccount}
             >
               {({ isSubmitting, values }) => (
                 <Form>
