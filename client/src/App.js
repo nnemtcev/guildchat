@@ -22,6 +22,10 @@ export default function App() {
       <Route path="/register" component={Register} />
       <Route path="/forgot-password" component={ForgotPassword} />
       <Route path="/reset-password/:token" component={ResetPassword} />
+      <AuthRoute exact path="/channels/me" component={Home} />
+      <AuthRoute exact path="/channels/me/:channelId" component={Home} />
+      <AuthRoute exact path="/account" component={Account} />
+      <AuthRoute exact path="/:link" component={Invite} />
     </Switch>
   );
 }

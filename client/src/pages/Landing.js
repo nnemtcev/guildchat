@@ -6,11 +6,11 @@ export default function Landing() {
   return (
     <LandingLayout>
       <Hero
-        title="An invite-only messaging app where you can chat"
-        subtitle="GuildChat is for talking about various topics that you're passionate about with friends."
-        image="/landing.svg"
+        title="Chat about topics that you're passionate about in invite-only chatrooms"
+        subtitle="The easiest way to connect with other people with niche interests online."
         ctaText="Get Started"
         ctaLink="/register"
+        demoText="Try Demo"
       />
     </LandingLayout>
   );

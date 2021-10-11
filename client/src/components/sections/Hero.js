@@ -17,13 +17,14 @@ export default function Hero({
   image,
   ctaLink,
   ctaText,
+  demoText,
   ...rest
 }) {
   return (
     <Flex
       align="center"
-      justify={{ base: "center", md: "space-around", xl: "space-between" }}
-      direction={{ base: "column-reverse", md: "row" }}
+      justify={{ base: "center", md: "center", xl: "center" }}
+      direction={{ base: "column-reverse", md: "column-reverse" }}
       wrap="nowrap"
       minH="70vh"
       px={8}
@@ -33,13 +34,13 @@ export default function Hero({
       <Stack
         spacing={4}
         w={{ base: "80%", md: "40%" }}
-        align={["center", "center", "flex-start", "flex-start"]}
+        align={["center", "center", "center", "center"]}
       >
         <Heading
           as="h1"
           size="xl"
           fontWeight="bold"
-          textAlign={["center", "center", "left", "left"]}
+          textAlign={["center", "center", "center", "center"]}
         >
           {title}
         </Heading>
@@ -49,7 +50,7 @@ export default function Hero({
           opacity="0.8"
           fontWeight="normal"
           lineHeight={1.5}
-          textAlign={["center", "center", "left", "left"]}
+          textAlign={["center", "center", "center", "center"]}
         >
           {subtitle}
         </Heading>
@@ -65,6 +66,17 @@ export default function Hero({
             {ctaText}
           </Button>
         </Link>
+        <Button
+          colorScheme="blue"
+          variant="outline"
+          borderRadius="8px"
+          py="4"
+          px="4"
+          lineHeight="1"
+          size="md"
+        >
+          {demoText}
+        </Button>
         <Text fontSize="xs" mt={2} textAlign="center" opacity="0.6">
           Got an account already?{" "}
           <CLink as={Link} to="/login">

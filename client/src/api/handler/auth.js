@@ -3,7 +3,7 @@ import { api } from "../apiClient";
 export const register = (formValues) =>
   api.post("/account/register", formValues);
 
-export const login = () => null;
+export const login = (formValues) => api.post("/account/login", formValues);
 
 export const logout = () => null;
 
