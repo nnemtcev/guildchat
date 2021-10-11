@@ -26,6 +26,10 @@ import InputField from "components/shared/InputField";
 import { UserSchema } from "validation/auth.schema";
 
 export default function Account() {
+  const { data: user } = useQuery(aKey, () =>
+    getAccount().then((res) => res.data)
+  );
+
   const history = useHistory();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -36,7 +40,7 @@ export default function Account() {
   } = useDisclosure();
 
   const inputFile = useRef(null);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(user?.image || "");
   const [cropImage, setCropImage] = useState("");
   const [croppedImage, setCroppedImage] = useState(null);
 
@@ -48,6 +52,12 @@ export default function Account() {
 
   function applyCrop(file) {}
 
+  if (!user) {
+    return null;
+  }
+
+  const { email, username, image } = user;
+
   return (
     <Flex minHeight="100vh" width="full" align="center" justifyContent="center">
       <Box px={4} width="full" maxWidth="500px">
@@ -58,9 +68,9 @@ export default function Account() {
           <Box>
             <Formik
               initialValues={{
-                email: "",
-                username: "",
-                image: null,
+                email,
+                username,
+                image,
               }}
               validationSchema={UserSchema}
               onSubmit={handleSubmit}
@@ -71,8 +81,8 @@ export default function Account() {
                     <Tooltip label="Change Avatar" aria-label="Change Avatar">
                       <Avatar
                         size="xl"
-                        name={""}
-                        src={""}
+                        name={username}
+                        src={imageUrl || image}
                         _hover={{ cursor: "pointer", opacity: 0.5 }}
                         onClick={() => inputFile.current.click()}
                       />
