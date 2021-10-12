@@ -11,7 +11,13 @@ import AccountBar from "../AccountBar";
 import dmScrollerCss from "./css/dmScrollerCSS";
 
 export default function DMSidebar() {
+  const { data: messages } = useQuery(dmKey, () => {
+    return getUserDMs().then((res) => res.data);
+  });
+
   useDMSocket();
+
+  console.log(messages);
 
   return (
     <GridItem
@@ -29,11 +35,12 @@ export default function DMSidebar() {
         fontSize="12px"
         fontWeight="semibold"
         color="brandGray.accent"
-      >
-        DIRECT MESSAGES
-      </Text>
+      ></Text>
       <UnorderedList listStyleType="none" ml="0" mt="4">
-        {"no data" && (
+        {messages?.map((dm) => (
+          <DMListItem dm={dm} key={dm?.id} />
+        ))}
+        {messages?.length === 0 && (
           <Box>
             <DMPlaceholder />
             <DMPlaceholder />

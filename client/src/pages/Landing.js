@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LandingLayout from "components/layouts/LandingLayout";
 import Hero from "components/sections/Hero";
 
