@@ -17,8 +17,6 @@ export default function DMSidebar() {
 
   useDMSocket();
 
-  console.log(messages);
-
   return (
     <GridItem
       gridColumn={"2"}

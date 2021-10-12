@@ -17,9 +17,23 @@ export default function DMListItem({ dm }) {
   const currentPath = `/channels/me/${dm.id}`;
   const location = useLocation();
   const isActive = location.pathname === currentPath;
+  const cache = useQueryClient();
   const [showCloseButton, setShowButton] = useState(false);
+  const history = useHistory();
 
-  async function handleCloseDM(event) {}
+  async function handleCloseDM(event) {
+    event.preventDefault();
+    await closeDirectMessage(dm.id);
+    cache.setQueryData(dmKey, (oldDMs) => {
+      return oldDMs?.filter((channel) => channel.id !== dm.id);
+    });
+
+    // Redirect after having deleted the conversation
+    // assuming that the user is still on the conversation page
+    if (isActive) {
+      history.replace("/channels/me");
+    }
+  }
 
   return (
     <Link to={`/channels/me/${dm.id}`}>
